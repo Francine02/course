@@ -16,6 +16,8 @@ public class User{
     private String email;
     private String phone;
     private String password;
+
+    public User (){}
     
     public User(Long id, String name, String email, String phone, String password) {
         this.id = id;
