@@ -28,6 +28,8 @@ public class Product {
     inverseJoinColumns = @JoinColumn(name="category_id"))//Associa as tabelas
     private Set<Category> categories = new HashSet<>(); // Set - usado para não ocorrer repetições
 
+    public Product(){}
+    
     public Product(Long id, String name, String description, Double price, String imgUrl) {
         this.id = id;
         this.name = name;
