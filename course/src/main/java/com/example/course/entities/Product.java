@@ -6,6 +6,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -19,6 +22,10 @@ public class Product {
     private Double price;
     private String imgUrl;
 
+    @ManyToMany
+    @JoinTable(name = "tb_product_category", 
+    joinColumns = @JoinColumn(name="product_id"),
+    inverseJoinColumns = @JoinColumn(name="category_id"))//Associa as tabelas
     private Set<Category> categories = new HashSet<>(); // Set - usado para não ocorrer repetições
 
     public Product(Long id, String name, String description, Double price, String imgUrl) {
