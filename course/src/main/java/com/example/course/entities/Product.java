@@ -1,7 +1,6 @@
 package com.example.course.entities;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -10,21 +9,25 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "tb_category")
-public class Category {
+@Table(name = "tb_product")
+public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+    private String description;
+    private Double price;
+    private String imgUrl;
 
-    private Set<Product> products = new HashSet<>();
+    private Set<Category> categories = new HashSet<>(); // Set - usado para não ocorrer repetições
 
-    public Category(Long id, String name) {
+    public Product(Long id, String name, String description, Double price, String imgUrl) {
         this.id = id;
         this.name = name;
+        this.description = description;
+        this.price = price;
+        this.imgUrl = imgUrl;
     }
-
-    public Category(){}
 
     public Long getId() {
         return id;
@@ -42,8 +45,32 @@ public class Category {
         this.name = name;
     }
 
-    public Set<Product> getProducts() {
-        return products;
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
+    }
+
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
+    }
+
+    public Set<Category> getCategories() {
+        return categories;
     }
 
     @Override
@@ -62,7 +89,7 @@ public class Category {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        Category other = (Category) obj;
+        Product other = (Product) obj;
         if (id == null) {
             if (other.id != null)
                 return false;
